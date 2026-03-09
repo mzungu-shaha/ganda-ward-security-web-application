@@ -19,7 +19,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 - [x] Monthly and quarterly report generation
 - [x] High-risk village notifications
 - [x] Bootstrap 5 responsive UI with Bootstrap Icons
-- [x] 8 villages, 14 crime types, 4 officers seeded
+- [x] 8 villages updated with Ganda Ward names: Ganda, Mtsanganyiko, Mbaraka, Kidimu, Mwembeni, Mnakasa, KPE, Mtopanga
 - [x] Input validation and SQL injection protection via parameterized queries
 - [x] All lint errors fixed, TypeScript clean, build passing
 
