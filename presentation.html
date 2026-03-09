@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganda Ward Security Information System - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px 80px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #00d9ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .slide-subtitle {
+            font-size: 28px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .content-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #00d9ff;
+        }
+        
+        .content-box h3 {
+            color: #00d9ff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .content-box ul {
+            list-style: none;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .content-box ul li::before {
+            content: "▸ ";
+            color: #00d9ff;
+        }
+        
+        /* Title Slide */
+        .title-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .title-slide .main-title {
+            font-size: 64px;
+            color: #00d9ff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .title-slide .main-subtitle {
+            font-size: 32px;
+            color: #e94560;
+            margin-bottom: 60px;
+        }
+        
+        .title-slide .presented-by {
+            font-size: 20px;
+            color: #a0a0a0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Features Slide */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+        
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .tech-item h4 {
+            color: #00d9ff;
+            font-size: 20px;
+        }
+        
+        .tech-item p {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* Roles */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .role-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border-top: 4px solid;
+        }
+        
+        .role-card.admin { border-color: #e94560; }
+        .role-card.officer { border-color: #00d9ff; }
+        .role-card.elder { border-color: #4ecca3; }
+        .role-card.viewer { border-color: #ffc107; }
+        
+        .role-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .role-card.admin h3 { color: #e94560; }
+        .role-card.officer h3 { color: #00d9ff; }
+        .role-card.elder h3 { color: #4ecca3; }
+        .role-card.viewer h3 { color: #ffc107; }
+        
+        /* Data Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00d9ff;
+        }
+        
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        /* Demo Credentials */
+        .creds-table {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .creds-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .creds-table th, .creds-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .creds-table th {
+            background: rgba(0,217,255,0.2);
+            color: #00d9ff;
+        }
+        
+        /* Thank You */
+        .thank-you {
+            text-align: center;
+        }
+        
+        .thank-you h1 {
+            font-size: 72px;
+            color: #00d9ff;
+            margin-bottom: 30px;
+        }
+        
+        .thank-you p {
+            font-size: 24px;
+            color: #a0a0a0;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #00d9ff;
+            color: #1a1a2e;
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 35px;
+            right: 40px;
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #00d9ff;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+    
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide active">
+            <div class="slide-content">
+                <h1 class="main-title">Ganda Ward Security<br>Information System</h1>
+                <p class="main-subtitle">Crime Incident Tracking & Management Platform</p>
+                <p class="presented-by">Ganda Ward, Kilifi County, Kenya</p>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Overview -->
+        <div class="slide">
+            <h2 class="slide-title">System Overview</h2>
+            <p class="slide-subtitle">What is GWSIS?</p>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-box">
+                        <h3>Purpose</h3>
+                        <ul>
+                            <li>Track and manage crime incidents</li>
+                            <li>Centralize security data</li>
+                            <li>Generate analytical reports</li>
+                            <li>Visualize crime patterns</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3>Key Benefits</h3>
+                        <ul>
+                            <li>Real-time incident reporting</li>
+                            <li>Role-based access control</li>
+                            <li>Interactive crime mapping</li>
+                            <li>PDF & CSV exports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Features -->
+        <div class="slide">
+            <h2 class="slide-title">Key Features</h2>
+            <p class="slide-subtitle">Comprehensive Security Management</p>
+            <div class="slide-content">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Dashboard</h3>
+                        <p>Statistical overview with charts and graphs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Incident Management</h3>
+                        <p>Create, edit, track crime incidents</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>Crime Map</h3>
+                        <p>Interactive map with GPS coordinates</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Reports</h3>
+                        <p>Generate PDF and CSV exports</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏘️</div>
+                        <h3>Village Management</h3>
+                        <p>Manage 8 villages with population data</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>User Management</h3>
+                        <p>Role-based access control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Technology Stack -->
+        <div class="slide">
+            <h2 class="slide-title">Technology Stack</h2>
+            <p class="slide-subtitle">Modern & Robust Architecture</p>
+            <div class="slide-content">
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <h4>Next.js 16</h4>
+                        <p>React Framework</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>React 19</h4>
+                        <p>UI Library</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>TypeScript</h4>
+                        <p>Type Safety</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>SQLite</h4>
+                        <p>Database</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>JWT</h4>
+                        <p>Authentication</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Chart.js</h4>
+                        <p>Data Visualization</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Leaflet.js</h4>
+                        <p>Interactive Maps</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Bootstrap 5</h4>
+                        <p>UI Framework</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: User Roles -->
+        <div class="slide">
+            <h2 class="slide-title">User Roles & Access</h2>
+            <p class="slide-subtitle">Role-Based Access Control</p>
+            <div class="slide-content">
+                <div class="role-grid">
+                    <div class="role-card admin">
+                        <h3>Administrator</h3>
+                        <ul>
+                            <li>Full system access</li>
+                            <li>User management</li>
+                            <li>All CRUD operations</li>
+                            <li>View all data</li>
+                        </ul>
+                    </div>
+                    <div class="role-card officer">
+                        <h3>Police Officer</h3>
+                        <ul>
+                            <li>Create incidents</li>
+                            <li>Edit incidents</li>
+                            <li>View dashboard</li>
+                            <li>Generate reports</li>
+                        </ul>
+                    </div>
+                    <div class="role-card elder">
+                        <h3>Village Elder</h3>
+                        <ul>
+                            <li>View village data</li>
+                            <li>Report incidents</li>
+                            <li>View dashboard</li>
+                            <li>Limited access</li>
+                        </ul>
+                    </div>
+                    <div class="role-card viewer">
+                        <h3>Viewer</h3>
+                        <ul>
+                            <li>Read-only access</li>
+                            <li>View dashboard</li>
+                            <li>View map</li>
+                            <li>View reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Data Statistics -->
+        <div class="slide">
+            <h2 class="slide-title">System Data</h2>
+            <p class="slide-subtitle">Pre-configured Information</p>
+            <div class="slide-content">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Villages</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Crime Types</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Police Officers</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">Sample Incidents</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Villages -->
+        <div class="slide">
+            <h2 class="slide-title">Ganda Ward Villages</h2>
+            <p class="slide-subtitle">8 Communities We Serve</p>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="content-box">
+                        <ul>
+                            <li>Ganda (Population: 2,500)</li>
+                            <li>Mtsanganyiko (Population: 1,800)</li>
+                            <li>Mbaraka (Population: 2,100)</li>
+                            <li>Kidimu (Population: 1,600)</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <ul>
+                            <li>Mwembeni (Population: 1,900)</li>
+                            <li>Mnakasa (Population: 2,200)</li>
+                            <li>KPE (Population: 1,700)</li>
+                            <li>Mtopanga (Population: 1,400)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Demo Credentials -->
+        <div class="slide">
+            <h2 class="slide-title">Demo Credentials</h2>
+            <p class="slide-subtitle">Test Accounts for Exploration</p>
+            <div class="slide-content">
+                <div class="creds-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Administrator</td>
+                                <td>admin</td>
+                                <td>admin123</td>
+                            </tr>
+                            <tr>
+                                <td>Police Officer</td>
+                                <td>officer_kamau</td>
+                                <td>officer123</td>
+                            </tr>
+                            <tr>
+                                <td>Village Elder</td>
+                                <td>elder_wanjiku</td>
+                                <td>elder123</td>
+                            </tr>
+                            <tr>
+                                <td>Viewer</td>
+                                <td>viewer1</td>
+                                <td>viewer123</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Thank You -->
+        <div class="slide">
+            <div class="slide-content thank-you">
+                <h1>Thank You!</h1>
+                <p>Ganda Ward Security Information System</p>
+                <p style="margin-top: 40px; color: #00d9ff;">Questions & Discussion</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav">
+        <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+    
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">9</span>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+            document.getElementById('progress').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+        
+        // Initialize progress bar
+        document.getElementById('progress').style.width = (1 / totalSlides * 100) + '%';
+    </script>
+</body>
+</html>
