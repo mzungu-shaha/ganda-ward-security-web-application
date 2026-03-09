@@ -175,33 +175,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Demo credentials */}
-        <div className="card mt-3 border-0 bg-white bg-opacity-10">
-          <div className="card-body p-3">
-            <p className="text-white-50 small fw-semibold mb-2">
-              <i className="bi bi-info-circle me-1"></i>Demo Credentials:
-            </p>
-            <div className="row g-2">
-              {[
-                { role: "Admin", user: "admin", pass: "admin123" },
-                { role: "Officer", user: "officer_kamau", pass: "officer123" },
-                { role: "Elder", user: "elder_wanjiku", pass: "elder123" },
-              ].map((cred) => (
-                <div key={cred.role} className="col-6">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-light w-100 text-start py-1 px-2"
-                    onClick={() => { setUsername(cred.user); setPassword(cred.pass); }}
-                    style={{ fontSize: "0.75rem" }}
-                  >
-                    <strong>{cred.role}:</strong> {cred.user}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         <p className="text-center text-white-50 small mt-3">
           © 2024 Ganda Ward Administration · Kilifi County
         </p>
