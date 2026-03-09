@@ -125,10 +125,10 @@ function seedInitialData(db: Database.Database) {
   // Insert villages
   db.prepare(`
     INSERT INTO villages (name, description, population, latitude, longitude) VALUES
-    ('Ganda', 'Main ward center', 3500, -3.2197, 40.1169),
+    ('Ganda', 'Main ward center', 3500, -3.1786, 40.0739),
     ('Msabaha', 'Northern sub-location', 2800, -3.1950, 40.1050),
-    ('Mere', 'Eastern sub-location', 2200, -3.2350, 40.1350),
-    ('Kijiwetanga', 'Western sub-location', 1900, -3.2100, 40.0950)
+    ('Mere', 'Eastern sub-location', 2200, -3.2100, 40.1200),
+    ('Kijiwetanga', 'Western sub-location', 1900, -3.2146, 40.0913)
   `).run();
 
   // Insert crime types
@@ -165,102 +165,102 @@ function seedInitialData(db: Database.Database) {
     {
       num: 'INC-2024-001', dt: '2024-01-15 14:30:00', village: 1, crime: 1,
       desc: 'Mobile phone stolen from market area', loc: 'Ganda Market',
-      lat: -3.2197, lng: 40.1169, status: 'unknown', officer: 1
+      lat: -3.1786, lng: 40.0739, status: 'unknown', officer: 1
     },
     {
       num: 'INC-2024-002', dt: '2024-01-20 22:15:00', village: 2, crime: 3,
       desc: 'House broken into, electronics stolen', loc: 'Mtsanganyiko Residential Area',
-      lat: -3.2050, lng: 40.1250, status: 'under_investigation', officer: 2
+      lat: -3.1950, lng: 40.1050, status: 'under_investigation', officer: 2
     },
     {
       num: 'INC-2024-003', dt: '2024-02-05 18:45:00', village: 3, crime: 2,
       desc: 'Fight at local bar resulting in injuries', loc: 'Mbaraka Bar Street',
-      lat: -3.2300, lng: 40.1350, status: 'arrested', officer: 1
+      lat: -3.2100, lng: 40.1200, status: 'arrested', officer: 1
     },
     {
       num: 'INC-2024-004', dt: '2024-02-12 09:00:00', village: 4, crime: 5,
       desc: 'Domestic violence reported by neighbor', loc: 'Kidimu Village',
-      lat: -3.2400, lng: 40.1100, status: 'under_investigation', officer: 3
+      lat: -3.2146, lng: 40.0913, status: 'under_investigation', officer: 3
     },
     {
       num: 'INC-2024-005', dt: '2024-02-28 20:30:00', village: 1, crime: 4,
       desc: 'Drug trafficking operation discovered', loc: 'Ganda Back Alley',
-      lat: -3.2200, lng: 40.1175, status: 'arrested', officer: 4
+      lat: -3.1790, lng: 40.0745, status: 'arrested', officer: 4
     },
     {
-      num: 'INC-2024-006', dt: '2024-03-10 16:00:00', village: 5, crime: 6,
-      desc: 'Armed robbery at shop', loc: 'Mwembeni Shopping Center',
-      lat: -3.2150, lng: 40.1050, status: 'unknown', officer: 2
+      num: 'INC-2024-006', dt: '2024-03-10 16:00:00', village: 2, crime: 6,
+      desc: 'Armed robbery at shop', loc: 'Msabaha Shopping Center',
+      lat: -3.1960, lng: 40.1060, status: 'unknown', officer: 2
     },
     {
-      num: 'INC-2024-007', dt: '2024-03-15 11:30:00', village: 6, crime: 1,
-      desc: 'Livestock theft reported', loc: 'Mnakasa Farm Area',
-      lat: -3.2250, lng: 40.1200, status: 'under_investigation', officer: 1
+      num: 'INC-2024-007', dt: '2024-03-15 11:30:00', village: 3, crime: 1,
+      desc: 'Livestock theft reported', loc: 'Mere Farm Area',
+      lat: -3.2110, lng: 40.1190, status: 'under_investigation', officer: 1
     },
     {
       num: 'INC-2024-008', dt: '2024-04-02 23:00:00', village: 2, crime: 3,
-      desc: 'School broken into, equipment stolen', loc: 'Mtsanganyiko Primary School',
-      lat: -3.2060, lng: 40.1260, status: 'unknown', officer: 3
+      desc: 'School broken into, equipment stolen', loc: 'Msabaha Primary School',
+      lat: -3.1940, lng: 40.1040, status: 'unknown', officer: 3
     },
     {
-      num: 'INC-2024-009', dt: '2024-04-18 15:20:00', village: 7, crime: 7,
-      desc: 'Public property vandalized', loc: 'KPE Community Center',
-      lat: -3.2000, lng: 40.1300, status: 'unknown', officer: 4
+      num: 'INC-2024-009', dt: '2024-04-18 15:20:00', village: 4, crime: 7,
+      desc: 'Public property vandalized', loc: 'Kijiwetanga Community Center',
+      lat: -3.2150, lng: 40.0920, status: 'unknown', officer: 4
     },
     {
       num: 'INC-2024-010', dt: '2024-05-05 08:45:00', village: 3, crime: 2,
-      desc: 'Assault during land dispute', loc: 'Mbaraka Farm Boundary',
-      lat: -3.2310, lng: 40.1360, status: 'arrested', officer: 2
+      desc: 'Assault during land dispute', loc: 'Mere Farm Boundary',
+      lat: -3.2120, lng: 40.1210, status: 'arrested', officer: 2
     },
     {
       num: 'INC-2024-011', dt: '2024-05-20 19:00:00', village: 1, crime: 8,
       desc: 'Mobile money fraud reported', loc: 'Ganda',
-      lat: -3.2197, lng: 40.1169, status: 'under_investigation', officer: 1
+      lat: -3.1786, lng: 40.0739, status: 'under_investigation', officer: 1
     },
     {
       num: 'INC-2024-012', dt: '2024-06-08 14:00:00', village: 4, crime: 5,
-      desc: 'Domestic violence with serious injuries', loc: 'Kidimu',
-      lat: -3.2410, lng: 40.1110, status: 'arrested', officer: 3
+      desc: 'Domestic violence with serious injuries', loc: 'Kijiwetanga',
+      lat: -3.2140, lng: 40.0910, status: 'arrested', officer: 3
     },
     {
-      num: 'INC-2024-013', dt: '2024-06-25 21:30:00', village: 8, crime: 6,
-      desc: 'Night robbery on main road', loc: 'Mtopanga Road',
-      lat: -3.2450, lng: 40.1000, status: 'unknown', officer: 4
+      num: 'INC-2024-013', dt: '2024-06-25 21:30:00', village: 1, crime: 6,
+      desc: 'Night robbery on main road', loc: 'Ganda Main Road',
+      lat: -3.1800, lng: 40.0750, status: 'unknown', officer: 4
     },
     {
-      num: 'INC-2024-014', dt: '2024-07-12 10:15:00', village: 5, crime: 4,
-      desc: 'Drug den discovered and raided', loc: 'Mwembeni Outskirts',
-      lat: -3.2160, lng: 40.1060, status: 'arrested', officer: 1
+      num: 'INC-2024-014', dt: '2024-07-12 10:15:00', village: 2, crime: 4,
+      desc: 'Drug den discovered and raided', loc: 'Msabaha Outskirts',
+      lat: -3.1965, lng: 40.1065, status: 'arrested', officer: 1
     },
     {
-      num: 'INC-2024-015', dt: '2024-07-30 17:45:00', village: 6, crime: 1,
-      desc: 'Motorcycle theft at market', loc: 'Mnakasa Market',
-      lat: -3.2255, lng: 40.1205, status: 'under_investigation', officer: 2
+      num: 'INC-2024-015', dt: '2024-07-30 17:45:00', village: 3, crime: 1,
+      desc: 'Motorcycle theft at market', loc: 'Mere Market',
+      lat: -3.2105, lng: 40.1205, status: 'under_investigation', officer: 2
     },
     {
       num: 'INC-2024-016', dt: '2024-08-14 13:00:00', village: 2, crime: 2,
-      desc: 'Gang fight with weapons', loc: 'Mtsanganyiko Junction',
-      lat: -3.2055, lng: 40.1255, status: 'arrested', officer: 3
+      desc: 'Gang fight with weapons', loc: 'Msabaha Junction',
+      lat: -3.1945, lng: 40.1045, status: 'arrested', officer: 3
     },
     {
       num: 'INC-2024-017', dt: '2024-08-28 20:00:00', village: 1, crime: 3,
       desc: 'Warehouse burglary', loc: 'Ganda Industrial',
-      lat: -3.2205, lng: 40.1180, status: 'unknown', officer: 4
+      lat: -3.1795, lng: 40.0745, status: 'unknown', officer: 4
     },
     {
-      num: 'INC-2024-018', dt: '2024-09-10 09:30:00', village: 7, crime: 5,
-      desc: 'Domestic violence case', loc: 'KPE Residential',
-      lat: -3.2005, lng: 40.1305, status: 'under_investigation', officer: 1
+      num: 'INC-2024-018', dt: '2024-09-10 09:30:00', village: 4, crime: 5,
+      desc: 'Domestic violence case', loc: 'Kijiwetanga Residential',
+      lat: -3.2155, lng: 40.0915, status: 'under_investigation', officer: 1
     },
     {
       num: 'INC-2024-019', dt: '2024-09-22 16:30:00', village: 3, crime: 4,
-      desc: 'Drug trafficking at school vicinity', loc: 'Mbaraka School Area',
-      lat: -3.2305, lng: 40.1355, status: 'arrested', officer: 2
+      desc: 'Drug trafficking at school vicinity', loc: 'Mere School Area',
+      lat: -3.2115, lng: 40.1195, status: 'arrested', officer: 2
     },
     {
-      num: 'INC-2024-020', dt: '2024-10-05 22:45:00', village: 8, crime: 6,
-      desc: 'Armed robbery at petrol station', loc: 'Mtopanga Petrol Station',
-      lat: -3.2455, lng: 40.1005, status: 'under_investigation', officer: 3
+      num: 'INC-2024-020', dt: '2024-10-05 22:45:00', village: 1, crime: 6,
+      desc: 'Armed robbery at petrol station', loc: 'Ganda Petrol Station',
+      lat: -3.1780, lng: 40.0735, status: 'under_investigation', officer: 3
     }
   ];
 
