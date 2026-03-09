@@ -25,7 +25,6 @@ The Ganda Ward Security Information System provides a centralized platform for:
 | **Administrator** | Full system access, user management, all features |
 | **Police Officer** | Create, edit, manage incidents, view dashboard |
 | **Village Elder** | View incidents in their village, report new incidents |
-| **Viewer** | Read-only access to view incidents and reports |
 
 ---
 
@@ -187,17 +186,17 @@ CREATE TABLE notifications (
 - Token expiration and refresh handling
 
 ### 3.2 Role-Based Access Control (RBAC)
-| Feature | Admin | Police Officer | Village Elder | Viewer |
-|---------|-------|----------------|---------------|--------|
-| View Dashboard | ✓ | ✓ | ✓ | ✓ |
-| View All Incidents | ✓ | ✓ | ✗ | ✓ |
-| Create Incident | ✓ | ✓ | ✓ | ✗ |
-| Edit Incident | ✓ | ✓ | ✗ | ✗ |
-| Delete Incident | ✓ | ✗ | ✗ | ✗ |
-| Manage Users | ✓ | ✗ | ✗ | ✗ |
-| Manage Villages | ✓ | ✗ | ✗ | ✗ |
-| Generate Reports | ✓ | ✓ | ✗ | ✓ |
-| View Map | ✓ | ✓ | ✓ | ✓ |
+| Feature | Admin | Police Officer | Village Elder |
+|---------|-------|----------------|---------------|
+| View Dashboard | ✓ | ✓ | ✓ |
+| View All Incidents | ✓ | ✓ | ✗ |
+| Create Incident | ✓ | ✓ | ✓ |
+| Edit Incident | ✓ | ✓ | ✗ |
+| Delete Incident | ✓ | ✗ | ✗ |
+| Manage Users | ✓ | ✗ | ✗ |
+| Manage Villages | ✓ | ✗ | ✗ |
+| Generate Reports | ✓ | ✓ | ✗ |
+| View Map | ✓ | ✓ | ✓ |
 
 ### 3.3 Input Validation
 - Server-side validation on all API endpoints
@@ -208,7 +207,15 @@ CREATE TABLE notifications (
 
 ## 4. Features Description
 
-### 4.1 Dashboard
+### 4.1 Public Access
+The following pages are accessible without login:
+- **Dashboard**: View crime statistics and charts
+- **Crime Map**: Interactive map of incident locations
+- **Villages**: View all villages in Ganda Ward
+
+This allows community members and visitors to access key information without requiring an account.
+
+### 4.2 Dashboard
 The main dashboard provides:
 - **Statistics Cards**: Total incidents, open cases, resolved cases, arrests made
 - **Bar Chart**: Incidents by village
@@ -287,7 +294,6 @@ Export capabilities:
 | admin | admin123 | Administrator |
 | officer_kamau | officer123 | Police Officer |
 | elder_wanjiku | elder123 | Village Elder |
-| viewer1 | viewer123 | Viewer |
 
 ---
 

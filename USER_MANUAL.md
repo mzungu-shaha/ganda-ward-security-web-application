@@ -35,6 +35,8 @@ The Ganda Ward Security Information System (GWSIS) is a web-based platform desig
 2. Navigate to the application URL
 3. You will see the login page
 
+> **Note**: The Dashboard, Crime Map, and Villages pages are publicly accessible without logging in. If you access the login page by mistake, you can use the navigation menu at the top to return to these public areas.
+
 ### 2.2 Demo Accounts
 The system comes with pre-configured demo accounts:
 
@@ -43,7 +45,6 @@ The system comes with pre-configured demo accounts:
 | Administrator | admin | admin123 |
 | Police Officer | officer_kamau | officer123 |
 | Village Elder | elder_wanjiku | elder123 |
-| Viewer | viewer1 | viewer123 |
 
 ---
 

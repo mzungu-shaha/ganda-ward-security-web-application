@@ -43,19 +43,19 @@ This document outlines the security measures, policies, and compliance framework
 
 ### 2.3 Role-Based Access Control (RBAC)
 
-The system implements four distinct user roles with granular permissions:
+The system implements three distinct user roles with granular permissions:
 
-| Permission | Admin | Police Officer | Village Elder | Viewer |
-|------------|-------|----------------|---------------|--------|
-| View Dashboard | ✓ | ✓ | ✓ | ✓ |
-| View All Incidents | ✓ | ✓ | ✗ | ✓ |
-| Create Incident | ✓ | ✓ | ✓ | ✗ |
-| Edit Incident | ✓ | ✓ | ✗ | ✗ |
-| Delete Incident | ✓ | ✗ | ✗ | ✗ |
-| Manage Users | ✓ | ✗ | ✗ | ✗ |
-| Manage Villages | ✓ | ✗ | ✗ | ✗ |
-| Generate Reports | ✓ | ✓ | ✗ | ✓ |
-| View Map | ✓ | ✓ | ✓ | ✓ |
+| Permission | Admin | Police Officer | Village Elder |
+|------------|-------|----------------|---------------|
+| View Dashboard | ✓ | ✓ | ✓ |
+| View All Incidents | ✓ | ✓ | ✗ |
+| Create Incident | ✓ | ✓ | ✓ |
+| Edit Incident | ✓ | ✓ | ✗ |
+| Delete Incident | ✓ | ✗ | ✗ |
+| Manage Users | ✓ | ✗ | ✗ |
+| Manage Villages | ✓ | ✗ | ✗ |
+| Generate Reports | ✓ | ✓ | ✗ |
+| View Map | ✓ | ✓ | ✓ |
 
 ---
 
