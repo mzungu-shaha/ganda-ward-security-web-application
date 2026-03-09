@@ -1,87 +1,68 @@
-# Active Context: Next.js Starter Template
+# Active Context: Ganda Ward Security Information System
 
 ## Current State
 
-**Template Status**: ✅ Ready for development
+**Application Status**: ✅ Fully Built & Deployed
 
-The template is a clean Next.js 16 starter with TypeScript and Tailwind CSS 4. It's ready for AI-assisted expansion to build any type of application.
+The application is a full-stack Next.js 16 crime incident tracking system for Ganda Ward, Kilifi County, Kenya. All features are implemented, lint-clean, and TypeScript-clean.
 
 ## Recently Completed
 
-- [x] Base Next.js 16 setup with App Router
-- [x] TypeScript configuration with strict mode
-- [x] Tailwind CSS 4 integration
-- [x] ESLint configuration
-- [x] Memory bank documentation
-- [x] Recipe system for common features
+- [x] Full-stack Next.js 16 app with SQLite database (better-sqlite3)
+- [x] JWT authentication with bcrypt password hashing
+- [x] Role-based access control (Admin, Police Officer, Village Elder, Viewer)
+- [x] Crime incident CRUD with 20 sample incidents seeded
+- [x] Dashboard with Chart.js: bar chart, pie chart, line chart, doughnut chart
+- [x] Interactive crime map with Leaflet.js and GPS coordinates
+- [x] Search/filter by village, crime type, officer, date range, status
+- [x] PDF export with jsPDF + autotable, CSV export
+- [x] Monthly and quarterly report generation
+- [x] High-risk village notifications
+- [x] Bootstrap 5 responsive UI with Bootstrap Icons
+- [x] 8 villages, 14 crime types, 4 officers seeded
+- [x] Input validation and SQL injection protection via parameterized queries
+- [x] All lint errors fixed, TypeScript clean, build passing
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/page.tsx` | Home page | ✅ Ready |
-| `src/app/layout.tsx` | Root layout | ✅ Ready |
-| `src/app/globals.css` | Global styles | ✅ Ready |
-| `.kilocode/` | AI context & recipes | ✅ Ready |
+| `src/app/login/page.tsx` | Login page with demo credentials | ✅ Ready |
+| `src/app/dashboard/page.tsx` | Dashboard with 4 charts + stats | ✅ Ready |
+| `src/app/incidents/page.tsx` | Incidents list with filters | ✅ Ready |
+| `src/app/incidents/new/page.tsx` | Report new incident form | ✅ Ready |
+| `src/app/incidents/[id]/page.tsx` | Incident detail view | ✅ Ready |
+| `src/app/incidents/[id]/edit/page.tsx` | Edit incident form | ✅ Ready |
+| `src/app/map/page.tsx` | Leaflet.js crime map | ✅ Ready |
+| `src/app/reports/page.tsx` | PDF/CSV report generation | ✅ Ready |
+| `src/app/villages/page.tsx` | Village management | ✅ Ready |
+| `src/app/users/page.tsx` | User management (admin only) | ✅ Ready |
+| `src/lib/db.ts` | SQLite database with seeded data | ✅ Ready |
+| `src/lib/auth.ts` | JWT auth utilities | ✅ Ready |
+| `src/components/AppLayout.tsx` | Shared sidebar layout | ✅ Ready |
+| `src/app/api/` | REST API routes | ✅ Ready |
 
-## Current Focus
+## Demo Credentials
 
-The template is ready. Next steps depend on user requirements:
+| Role | Username | Password |
+|------|----------|----------|
+| Admin | admin | admin123 |
+| Police Officer | officer_kamau | officer123 |
+| Village Elder | elder_wanjiku | elder123 |
+| Viewer | viewer1 | viewer123 |
 
-1. What type of application to build
-2. What features are needed
-3. Design/branding preferences
+## Database Schema
 
-## Quick Start Guide
-
-### To add a new page:
-
-Create a file at `src/app/[route]/page.tsx`:
-```tsx
-export default function NewPage() {
-  return <div>New page content</div>;
-}
-```
-
-### To add components:
-
-Create `src/components/` directory and add components:
-```tsx
-// src/components/ui/Button.tsx
-export function Button({ children }: { children: React.ReactNode }) {
-  return <button className="px-4 py-2 bg-blue-600 text-white rounded">{children}</button>;
-}
-```
-
-### To add a database:
-
-Follow `.kilocode/recipes/add-database.md`
-
-### To add API routes:
-
-Create `src/app/api/[route]/route.ts`:
-```tsx
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({ message: "Hello" });
-}
-```
-
-## Available Recipes
-
-| Recipe | File | Use Case |
-|--------|------|----------|
-| Add Database | `.kilocode/recipes/add-database.md` | Data persistence with Drizzle + SQLite |
-
-## Pending Improvements
-
-- [ ] Add more recipes (auth, email, etc.)
-- [ ] Add example components
-- [ ] Add testing setup recipe
+- **users** - Authentication and role management
+- **villages** - 8 villages in Ganda Ward with GPS coordinates
+- **crime_types** - 14 crime types with severity levels
+- **officers** - 4 police officers
+- **crime_incidents** - 20 sample incidents with full details
+- **notifications** - High-risk village alerts
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
 | Initial | Template created with base setup |
+| 2024-03 | Built complete Ganda Ward Security Information System |
