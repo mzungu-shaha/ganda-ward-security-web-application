@@ -59,12 +59,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
   };
 
   const navItems = [
-    { href: "/dashboard", icon: "bi-speedometer2", label: "Dashboard", roles: ["admin", "police_officer", "village_elder"] },
-    { href: "/incidents", icon: "bi-exclamation-triangle", label: "Incidents", roles: ["admin", "police_officer", "village_elder"] },
+    { href: "/dashboard", icon: "bi-speedometer2", label: "Dashboard", roles: ["admin", "police_officer", "assistant_chief"] },
+    { href: "/incidents", icon: "bi-exclamation-triangle", label: "Incidents", roles: ["admin", "police_officer", "assistant_chief"] },
     { href: "/incidents/new", icon: "bi-plus-circle", label: "Report Incident", roles: ["admin", "police_officer"] },
-    { href: "/map", icon: "bi-map", label: "Crime Map", roles: ["admin", "police_officer", "village_elder"] },
-    { href: "/reports", icon: "bi-file-earmark-bar-graph", label: "Reports", roles: ["admin", "police_officer", "village_elder"] },
-    { href: "/villages", icon: "bi-houses", label: "Sub-locations", roles: ["admin", "police_officer", "village_elder"] },
+    { href: "/map", icon: "bi-map", label: "Crime Map", roles: ["admin", "police_officer", "assistant_chief"] },
+    { href: "/reports", icon: "bi-file-earmark-bar-graph", label: "Reports", roles: ["admin", "police_officer", "assistant_chief"] },
+    { href: "/villages", icon: "bi-houses", label: "Sub-locations", roles: ["admin", "police_officer", "assistant_chief"] },
     { href: "/users", icon: "bi-people", label: "Users", roles: ["admin"] },
   ];
 
@@ -72,7 +72,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     const badges: Record<string, string> = {
       admin: "danger",
       police_officer: "primary",
-      village_elder: "success",
+      assistant_chief: "success",
     };
     return badges[role] || "secondary";
   };
@@ -81,7 +81,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     const labels: Record<string, string> = {
       admin: "Administrator",
       police_officer: "Police Officer",
-      village_elder: "Sub-location Elder",
+      assistant_chief: "Assistant Chief",
     };
     return labels[role] || role;
   };

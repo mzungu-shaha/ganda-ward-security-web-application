@@ -25,7 +25,7 @@ export default function UsersPage() {
   const [success, setSuccess] = useState("");
   const [form, setForm] = useState({
     username: "", email: "", password: "", full_name: "",
-    role: "viewer", badge_number: "", phone: "",
+    role: "police_officer", badge_number: "", phone: "",
   });
 
   const fetchUsers = useCallback(async () => {
@@ -68,14 +68,34 @@ export default function UsersPage() {
     }
     setSuccess("User created successfully!");
     setShowModal(false);
-    setForm({ username: "", email: "", password: "", full_name: "", role: "viewer", badge_number: "", phone: "" });
+    setForm({ username: "", email: "", password: "", full_name: "", role: "police_officer", badge_number: "", phone: "" });
+    fetchUsers();
+    setTimeout(() => setSuccess(""), 3000);
+  };
+
+  const handleDelete = async (userId: number) => {
+    if (!confirm("Are you sure you want to delete this user? This action cannot be undone.")) {
+      return;
+    }
+    setError("");
+    const token = localStorage.getItem("auth_token");
+    const res = await fetch(`/api/users?id=${userId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.error || "Failed to delete user");
+      return;
+    }
+    setSuccess("User deleted successfully!");
     fetchUsers();
     setTimeout(() => setSuccess(""), 3000);
   };
 
   const getRoleBadge = (role: string) => {
     const badges: Record<string, string> = {
-      admin: "danger", police_officer: "primary", village_elder: "success", viewer: "secondary",
+      admin: "danger", police_officer: "primary", assistant_chief: "success",
     };
     return badges[role] || "secondary";
   };
@@ -83,7 +103,7 @@ export default function UsersPage() {
   const getRoleLabel = (role: string) => {
     const labels: Record<string, string> = {
       admin: "Administrator", police_officer: "Police Officer",
-      village_elder: "Sub-location Elder", viewer: "Viewer",
+      assistant_chief: "Assistant Chief",
     };
     return labels[role] || role;
   };
@@ -126,7 +146,7 @@ export default function UsersPage() {
                     <th className="small fw-semibold">Badge #</th>
                     <th className="small fw-semibold">Status</th>
                     <th className="small fw-semibold">Last Login</th>
-                    <th className="small fw-semibold">Joined</th>
+                    <th className="small fw-semibold">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -166,8 +186,16 @@ export default function UsersPage() {
                           ? new Date(user.last_login).toLocaleDateString("en-KE", { day: "2-digit", month: "short", year: "numeric" })
                           : "Never"}
                       </td>
-                      <td className="small text-muted">
-                        {new Date(user.created_at).toLocaleDateString("en-KE", { day: "2-digit", month: "short", year: "numeric" })}
+                      <td>
+                        {user.role !== 'admin' && (
+                          <button
+                            className="btn btn-sm btn-outline-danger"
+                            onClick={() => handleDelete(user.id)}
+                            title="Delete user"
+                          >
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -221,8 +249,7 @@ export default function UsersPage() {
                         onChange={(e) => setForm({ ...form, role: e.target.value })}>
                         <option value="admin">Administrator</option>
                         <option value="police_officer">Police Officer</option>
-                        <option value="village_elder">Sub-location Elder</option>
-                        <option value="viewer">Viewer</option>
+                        <option value="assistant_chief">Assistant Chief</option>
                       </select>
                     </div>
                     <div className="col-md-4">

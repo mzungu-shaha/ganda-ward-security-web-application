@@ -11,7 +11,7 @@ export interface User {
   username: string;
   email: string;
   full_name: string;
-  role: 'admin' | 'police_officer' | 'village_elder';
+  role: 'admin' | 'police_officer' | 'assistant_chief';
   badge_number?: string;
   phone?: string;
   is_active: number;
