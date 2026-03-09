@@ -153,7 +153,6 @@ export default function LoginPage() {
                 { role: "Admin", user: "admin", pass: "admin123" },
                 { role: "Officer", user: "officer_kamau", pass: "officer123" },
                 { role: "Elder", user: "elder_wanjiku", pass: "elder123" },
-                { role: "Viewer", user: "viewer1", pass: "viewer123" },
               ].map((cred) => (
                 <div key={cred.role} className="col-6">
                   <button

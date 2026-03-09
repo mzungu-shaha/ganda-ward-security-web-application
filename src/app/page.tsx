@@ -6,15 +6,8 @@ export default function Home() {
   const router = useRouter();
   
   useEffect(() => {
-    // Redirect to dashboard (publicly accessible) or login based on auth status
-    const token = localStorage.getItem("auth_token");
-    const userData = localStorage.getItem("user");
-    
-    if (token && userData) {
-      router.replace("/dashboard");
-    } else {
-      router.replace("/dashboard");
-    }
+    // Always redirect to dashboard (publicly accessible)
+    router.replace("/dashboard");
   }, [router]);
 
   return (

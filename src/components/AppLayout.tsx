@@ -59,12 +59,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
   };
 
   const navItems = [
-    { href: "/dashboard", icon: "bi-speedometer2", label: "Dashboard", roles: ["admin", "police_officer", "village_elder", "viewer"] },
-    { href: "/incidents", icon: "bi-exclamation-triangle", label: "Incidents", roles: ["admin", "police_officer", "village_elder", "viewer"] },
+    { href: "/dashboard", icon: "bi-speedometer2", label: "Dashboard", roles: ["admin", "police_officer", "village_elder"] },
+    { href: "/incidents", icon: "bi-exclamation-triangle", label: "Incidents", roles: ["admin", "police_officer", "village_elder"] },
     { href: "/incidents/new", icon: "bi-plus-circle", label: "Report Incident", roles: ["admin", "police_officer"] },
-    { href: "/map", icon: "bi-map", label: "Crime Map", roles: ["admin", "police_officer", "village_elder", "viewer"] },
+    { href: "/map", icon: "bi-map", label: "Crime Map", roles: ["admin", "police_officer", "village_elder"] },
     { href: "/reports", icon: "bi-file-earmark-bar-graph", label: "Reports", roles: ["admin", "police_officer", "village_elder"] },
-    { href: "/villages", icon: "bi-houses", label: "Villages", roles: ["admin", "police_officer", "village_elder", "viewer"] },
+    { href: "/villages", icon: "bi-houses", label: "Villages", roles: ["admin", "police_officer", "village_elder"] },
     { href: "/users", icon: "bi-people", label: "Users", roles: ["admin"] },
   ];
 
@@ -73,7 +73,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
       admin: "danger",
       police_officer: "primary",
       village_elder: "success",
-      viewer: "secondary",
     };
     return badges[role] || "secondary";
   };
@@ -83,7 +82,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
       admin: "Administrator",
       police_officer: "Police Officer",
       village_elder: "Village Elder",
-      viewer: "Viewer",
     };
     return labels[role] || role;
   };
