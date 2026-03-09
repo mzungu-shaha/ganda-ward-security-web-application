@@ -116,10 +116,10 @@ export default function MapPage() {
       mapInstanceRef.current = null;
     }
 
-    // Center on Ganda Ward - Ganda village coordinates
+    // Center on Ganda along B54 road
     const map = L.map(mapRef.current, {
-      center: [-3.2197, 40.1169],
-      zoom: 14,
+      center: [-3.2220, 40.1185],
+      zoom: 15,
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
