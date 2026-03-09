@@ -10,14 +10,14 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 
 - [x] Full-stack Next.js 16 app with SQLite database (better-sqlite3)
 - [x] JWT authentication with bcrypt password hashing
-- [x] Role-based access control (Admin, Police Officer, Village Elder, Viewer)
+- [x] Role-based access control (Admin, Police Officer, Sub-location Elder)
 - [x] Crime incident CRUD with 20 sample incidents seeded
 - [x] Dashboard with Chart.js: bar chart, pie chart, line chart, doughnut chart
 - [x] Interactive crime map with Leaflet.js and GPS coordinates
-- [x] Search/filter by village, crime type, officer, date range, status
+- [x] Search/filter by sub-location, crime type, officer, date range, status
 - [x] PDF export with jsPDF + autotable, CSV export
 - [x] Monthly and quarterly report generation
-- [x] High-risk village notifications
+- [x] High-risk sub-location notifications
 - [x] Bootstrap 5 responsive UI with Bootstrap Icons
 - [x] 4 official Ganda Ward sub-locations: Ganda, Msabaha, Mere, Kijiwetanga
 - [x] Input validation and SQL injection protection via parameterized queries
@@ -36,7 +36,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 | `src/app/incidents/[id]/edit/page.tsx` | Edit incident form | ✅ Ready |
 | `src/app/map/page.tsx` | Leaflet.js crime map | ✅ Ready |
 | `src/app/reports/page.tsx` | PDF/CSV report generation | ✅ Ready |
-| `src/app/villages/page.tsx` | Village management | ✅ Ready |
+| `src/app/villages/page.tsx` | Sub-location management | ✅ Ready |
 | `src/app/users/page.tsx` | User management (admin only) | ✅ Ready |
 | `src/lib/db.ts` | SQLite database with seeded data | ✅ Ready |
 | `src/lib/auth.ts` | JWT auth utilities | ✅ Ready |
@@ -52,7 +52,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 |------|----------|----------|
 | Admin | admin | admin123 |
 | Police Officer | officer_kamau | officer123 |
-| Village Elder | elder_wanjiku | elder123 |
+| Sub-location Elder | elder_wanjiku | elder123 |
 
 ## Database Schema
 
@@ -61,7 +61,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 - **crime_types** - 14 crime types with severity levels
 - **officers** - 4 police officers
 - **crime_incidents** - 20 sample incidents with full details
-- **notifications** - High-risk village alerts
+- **notifications** - High-risk sub-location alerts
 
 ## Session History
 
@@ -70,3 +70,4 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 | Initial | Template created with base setup |
 | 2024-03 | Built complete Ganda Ward Security Information System |
 | 2025-03 | Updated to 4 official Ganda Ward sub-locations (Ganda, Msabaha, Mere, Kijiwetanga) |
+| 2025-03 | Changed terminology from Village to Sub-location to reflect official administrative structure |
