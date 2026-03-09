@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Required fields missing' }, { status: 400 });
   }
 
-  const validRoles = ['admin', 'police_officer', 'village_elder', 'viewer'];
+  const validRoles = ['admin', 'police_officer', 'village_elder'];
   if (!validRoles.includes(role)) {
     return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
   }

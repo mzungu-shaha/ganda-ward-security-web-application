@@ -30,7 +30,7 @@ function initializeDatabase(db: Database.Database) {
       email TEXT UNIQUE NOT NULL,
       password_hash TEXT NOT NULL,
       full_name TEXT NOT NULL,
-      role TEXT NOT NULL CHECK(role IN ('admin', 'police_officer', 'village_elder', 'viewer')),
+      role TEXT NOT NULL CHECK(role IN ('admin', 'police_officer', 'village_elder')),
       badge_number TEXT,
       phone TEXT,
       is_active INTEGER DEFAULT 1,
@@ -113,16 +113,14 @@ function seedInitialData(db: Database.Database) {
   const adminHash = bcrypt.hashSync('admin123', 10);
   const officerHash = bcrypt.hashSync('officer123', 10);
   const elderHash = bcrypt.hashSync('elder123', 10);
-  const viewerHash = bcrypt.hashSync('viewer123', 10);
 
   // Insert default users
   db.prepare(`
     INSERT INTO users (username, email, password_hash, full_name, role, badge_number, phone) VALUES
     ('admin', 'admin@gandaward.go.ke', ?, 'System Administrator', 'admin', 'ADM001', '+254700000001'),
     ('officer_kamau', 'kamau@gandaward.go.ke', ?, 'Sgt. John Kamau', 'police_officer', 'KPS001', '+254700000002'),
-    ('elder_wanjiku', 'wanjiku@gandaward.go.ke', ?, 'Mary Wanjiku', 'village_elder', NULL, '+254700000003'),
-    ('viewer1', 'viewer@gandaward.go.ke', ?, 'Community Viewer', 'viewer', NULL, '+254700000004')
-  `).run(adminHash, officerHash, elderHash, viewerHash);
+    ('elder_wanjiku', 'wanjiku@gandaward.go.ke', ?, 'Mary Wanjiku', 'village_elder', NULL, '+254700000003')
+  `).run(adminHash, officerHash, elderHash);
 
   // Insert villages
   db.prepare(`
