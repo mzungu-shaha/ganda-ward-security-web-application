@@ -116,10 +116,10 @@ export default function MapPage() {
       mapInstanceRef.current = null;
     }
 
-    // Center on Ganda Ward
+    // Center on Ganda Ward - Ganda village coordinates
     const map = L.map(mapRef.current, {
       center: [-3.2197, 40.1169],
-      zoom: 13,
+      zoom: 14,
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
