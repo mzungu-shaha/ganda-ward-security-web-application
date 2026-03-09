@@ -116,9 +116,9 @@ export default function MapPage() {
       mapInstanceRef.current = null;
     }
 
-    // Center on Ganda along B54 road
+    // Center on Ganda Ward, Kilifi County
     const map = L.map(mapRef.current, {
-      center: [-3.2220, 40.1185],
+      center: [-3.2177, 40.0665],
       zoom: 15,
     });
 
