@@ -116,9 +116,9 @@ export default function MapPage() {
       mapInstanceRef.current = null;
     }
 
-    // Center on Ganda Ward, Kilifi County
+    // Center on Kijiwetanga, Ganda Ward, Kilifi County
     const map = L.map(mapRef.current, {
-      center: [-3.1786, 40.0739],
+      center: [-3.2146, 40.0913],
       zoom: 15,
     });
 
