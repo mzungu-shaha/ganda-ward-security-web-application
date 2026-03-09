@@ -19,7 +19,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 - [x] Monthly and quarterly report generation
 - [x] High-risk village notifications
 - [x] Bootstrap 5 responsive UI with Bootstrap Icons
-- [x] 8 villages updated with Ganda Ward names: Ganda, Mtsanganyiko, Mbaraka, Kidimu, Mwembeni, Mnakasa, KPE, Mtopanga
+- [x] 4 official Ganda Ward sub-locations: Ganda, Msabaha, Mere, Kijiwetanga
 - [x] Input validation and SQL injection protection via parameterized queries
 - [x] All lint errors fixed, TypeScript clean, build passing
 - [x] Created documentation: REPORT.md (technical), USER_MANUAL.md (user guide), presentation.html (slides)
@@ -28,7 +28,7 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/login/page.tsx` | Login page with demo credentials | ✅ Ready |
+| `src/app/login/page.tsx` | Login page | ✅ Ready |
 | `src/app/dashboard/page.tsx` | Dashboard with 4 charts + stats | ✅ Ready |
 | `src/app/incidents/page.tsx` | Incidents list with filters | ✅ Ready |
 | `src/app/incidents/new/page.tsx` | Report new incident form | ✅ Ready |
@@ -53,12 +53,11 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 | Admin | admin | admin123 |
 | Police Officer | officer_kamau | officer123 |
 | Village Elder | elder_wanjiku | elder123 |
-| Viewer | viewer1 | viewer123 |
 
 ## Database Schema
 
 - **users** - Authentication and role management
-- **villages** - 8 villages in Ganda Ward with GPS coordinates
+- **villages** - 4 official Ganda Ward sub-locations with GPS coordinates
 - **crime_types** - 14 crime types with severity levels
 - **officers** - 4 police officers
 - **crime_incidents** - 20 sample incidents with full details
@@ -70,3 +69,4 @@ The application is a full-stack Next.js 16 crime incident tracking system for Ga
 |------|---------|
 | Initial | Template created with base setup |
 | 2024-03 | Built complete Ganda Ward Security Information System |
+| 2025-03 | Updated to 4 official Ganda Ward sub-locations (Ganda, Msabaha, Mere, Kijiwetanga) |
