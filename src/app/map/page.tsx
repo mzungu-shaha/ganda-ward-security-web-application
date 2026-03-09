@@ -118,7 +118,7 @@ export default function MapPage() {
 
     // Center on Ganda Ward, Kilifi County
     const map = L.map(mapRef.current, {
-      center: [-3.211464, 40.042106],
+      center: [-3.1786, 40.0739],
       zoom: 15,
     });
 
