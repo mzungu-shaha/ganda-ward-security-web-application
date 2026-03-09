@@ -4,11 +4,21 @@ import { getDb } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const payload = getUserFromRequest(request);
-  if (!payload) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+  
+  // Allow public access for read-only dashboard data (no auth required)
+  // Auth is optional - if provided, we include notifications
   const db = getDb();
+
+  // Only fetch notifications if authenticated
+  let notifications: unknown[] = [];
+  if (payload) {
+    notifications = db.prepare(`
+      SELECT * FROM notifications 
+      WHERE is_read = 0
+      ORDER BY created_at DESC
+      LIMIT 10
+    `).all();
+  }
 
   // Total incidents
   const totalIncidents = (db.prepare('SELECT COUNT(*) as count FROM crime_incidents').get() as { count: number }).count;
@@ -96,14 +106,6 @@ export async function GET(request: NextRequest) {
     GROUP BY status
   `).all();
 
-  // Notifications
-  const notifications = db.prepare(`
-    SELECT * FROM notifications 
-    WHERE is_read = 0
-    ORDER BY created_at DESC
-    LIMIT 10
-  `).all();
-
   return NextResponse.json({
     totalIncidents,
     incidentsByCrimeType,
@@ -116,5 +118,6 @@ export async function GET(request: NextRequest) {
     lastMonthCount,
     incidentsByStatus,
     notifications,
+    isPublic: !payload, // Indicate if data is public (no auth)
   });
 }

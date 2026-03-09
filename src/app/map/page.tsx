@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import AppLayout from "@/components/AppLayout";
+import PublicLayout from "@/components/PublicLayout";
+import Link from "next/link";
 
 interface Incident {
   id: number;
@@ -45,6 +47,13 @@ export default function MapPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [leafletLoaded, setLeafletLoaded] = useState(false);
+  const [isAuthenticated] = useState(() => {
+    // Check auth on initial render
+    if (typeof window === "undefined") return false;
+    const token = localStorage.getItem("auth_token");
+    const userData = localStorage.getItem("user");
+    return !!token && !!userData;
+  });
 
   const getSeverityColor = useCallback((severity: string) => {
     const colors: Record<string, string> = {
@@ -144,12 +153,10 @@ export default function MapPage() {
   }, [villages, incidents, filter, addIncidentMarkers]);
 
   useEffect(() => {
-    const token = localStorage.getItem("auth_token");
-    const headers = { Authorization: `Bearer ${token}` };
-
+    // Fetch data (works without auth now)
     Promise.all([
-      fetch("/api/incidents?limit=200", { headers }).then((r) => r.json()),
-      fetch("/api/villages", { headers }).then((r) => r.json()),
+      fetch("/api/incidents?limit=200").then((r) => r.json()),
+      fetch("/api/villages").then((r) => r.json()),
     ]).then(([inc, vil]) => {
       setIncidents(inc.incidents || []);
       setVillages(vil.villages || []);
@@ -181,8 +188,10 @@ export default function MapPage() {
     ? incidents.filter((i) => i.latitude && i.longitude).length
     : incidents.filter((i) => i.crime_severity === filter && i.latitude && i.longitude).length;
 
+  const Layout = isAuthenticated ? AppLayout : PublicLayout;
+
   return (
-    <AppLayout>
+    <Layout>
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div>
           <h4 className="fw-bold mb-1">
@@ -193,6 +202,12 @@ export default function MapPage() {
             Showing {filteredCount} incidents on map · Ganda Ward, Kilifi County
           </p>
         </div>
+        {!isAuthenticated && (
+          <Link href="/login" className="btn btn-primary btn-sm">
+            <i className="bi bi-box-arrow-in-right me-1"></i>
+            Login to Report
+          </Link>
+        )}
       </div>
 
       {/* Filter Controls */}
@@ -294,6 +309,6 @@ export default function MapPage() {
           </div>
         </div>
       </div>
-    </AppLayout>
+    </Layout>
   );
 }

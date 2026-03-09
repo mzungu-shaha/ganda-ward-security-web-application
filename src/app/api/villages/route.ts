@@ -3,11 +3,7 @@ import { getUserFromRequest, canManageUsers } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
-  const payload = getUserFromRequest(request);
-  if (!payload) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+  // Allow public access for reading villages (no auth required)
   const db = getDb();
   const villages = db.prepare(`
     SELECT v.*, COUNT(ci.id) as incident_count

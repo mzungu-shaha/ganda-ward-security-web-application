@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import AppLayout from "@/components/AppLayout";
+import PublicLayout from "@/components/PublicLayout";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface DashboardData {
@@ -29,6 +31,14 @@ interface DashboardData {
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Check auth on initial render
+    if (typeof window === "undefined") return false;
+    const token = localStorage.getItem("auth_token");
+    const userData = localStorage.getItem("user");
+    return !!token && !!userData;
+  });
+  const router = useRouter();
   const chartsInitialized = useRef(false);
 
   const initCharts = useCallback((d: DashboardData) => {
@@ -167,9 +177,10 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
+    // Fetch dashboard data (works without auth now)
     const token = localStorage.getItem("auth_token");
     fetch("/api/dashboard", {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
       .then((r) => r.json())
       .then((d) => {
@@ -197,20 +208,23 @@ export default function DashboardPage() {
     : 0;
 
   if (loading) {
+    const Layout = isAuthenticated ? AppLayout : PublicLayout;
     return (
-      <AppLayout>
+      <Layout>
         <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "400px" }}>
           <div className="text-center">
             <div className="spinner-border text-primary mb-3" role="status"></div>
             <p className="text-muted">Loading dashboard...</p>
           </div>
         </div>
-      </AppLayout>
+      </Layout>
     );
   }
 
+  const Layout = isAuthenticated ? AppLayout : PublicLayout;
+
   return (
-    <AppLayout>
+    <Layout>
       {/* Page Header */}
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div>
@@ -220,16 +234,23 @@ export default function DashboardPage() {
           </h4>
           <p className="text-muted small mb-0">Ganda Ward Crime Intelligence Overview</p>
         </div>
-        <div className="d-flex gap-2">
-          <Link href="/incidents/new" className="btn btn-danger btn-sm">
-            <i className="bi bi-plus-circle me-1"></i>
-            Report Incident
+        {isAuthenticated ? (
+          <div className="d-flex gap-2">
+            <Link href="/incidents/new" className="btn btn-danger btn-sm">
+              <i className="bi bi-plus-circle me-1"></i>
+              Report Incident
+            </Link>
+            <Link href="/reports" className="btn btn-outline-secondary btn-sm">
+              <i className="bi bi-download me-1"></i>
+              Export
+            </Link>
+          </div>
+        ) : (
+          <Link href="/login" className="btn btn-primary btn-sm">
+            <i className="bi bi-box-arrow-in-right me-1"></i>
+            Login to Report
           </Link>
-          <Link href="/reports" className="btn btn-outline-secondary btn-sm">
-            <i className="bi bi-download me-1"></i>
-            Export
-          </Link>
-        </div>
+        )}
       </div>
 
       {/* Notifications */}
@@ -488,6 +509,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </AppLayout>
+    </Layout>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import AppLayout from "@/components/AppLayout";
+import PublicLayout from "@/components/PublicLayout";
+import Link from "next/link";
 
 interface Village {
   id: number;
@@ -16,9 +18,23 @@ interface Village {
 export default function VillagesPage() {
   const [villages, setVillages] = useState<Village[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated] = useState(() => {
+    // Check auth on initial render
+    if (typeof window === "undefined") return false;
+    const token = localStorage.getItem("auth_token");
+    const userData = localStorage.getItem("user");
+    return !!token && !!userData;
+  });
   const [userRole] = useState(() => {
+    // Check user role on initial render
     if (typeof window === "undefined") return "";
-    return JSON.parse(localStorage.getItem("user") || "{}").role || "";
+    const userData = localStorage.getItem("user");
+    if (!userData) return "";
+    try {
+      return JSON.parse(userData).role || "";
+    } catch {
+      return "";
+    }
   });
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
@@ -28,15 +44,13 @@ export default function VillagesPage() {
   });
 
   const fetchVillages = async () => {
-    const token = localStorage.getItem("auth_token");
-    const res = await fetch("/api/villages", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetch("/api/villages");
     const data = await res.json();
     setVillages(data.villages || []);
     setLoading(false);
   };
 
+  // Fetch villages on mount (works without auth now)
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchVillages();
@@ -69,8 +83,10 @@ export default function VillagesPage() {
     return { label: "Low Risk", color: "success" };
   };
 
+  const Layout = isAuthenticated ? AppLayout : PublicLayout;
+
   return (
-    <AppLayout>
+    <Layout>
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div>
           <h4 className="fw-bold mb-1">
@@ -79,10 +95,16 @@ export default function VillagesPage() {
           </h4>
           <p className="text-muted small mb-0">{villages.length} villages in Ganda Ward</p>
         </div>
-        {userRole === "admin" && (
+        {isAuthenticated && userRole === "admin" && (
           <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
             <i className="bi bi-plus-circle me-1"></i>Add Village
           </button>
+        )}
+        {!isAuthenticated && (
+          <Link href="/login" className="btn btn-primary btn-sm">
+            <i className="bi bi-box-arrow-in-right me-1"></i>
+            Login to Manage
+          </Link>
         )}
       </div>
 
@@ -143,8 +165,8 @@ export default function VillagesPage() {
         </div>
       )}
 
-      {/* Add Village Modal */}
-      {showModal && (
+      {/* Add Village Modal - only show if authenticated */}
+      {showModal && isAuthenticated && (
         <div className="modal show d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
           <div className="modal-dialog">
             <div className="modal-content">
@@ -192,6 +214,6 @@ export default function VillagesPage() {
           </div>
         </div>
       )}
-    </AppLayout>
+    </Layout>
   );
 }
