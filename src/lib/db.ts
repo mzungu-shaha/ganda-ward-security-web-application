@@ -125,14 +125,10 @@ function seedInitialData(db: Database.Database) {
   // Insert villages
   db.prepare(`
     INSERT INTO villages (name, description, population, latitude, longitude) VALUES
-    ('Ganda', 'Main village center', 2500, -3.2197, 40.1169),
-    ('Mtsanganyiko', 'Northern village', 1800, -3.2050, 40.1250),
-    ('Mbaraka', 'Eastern village', 2100, -3.2300, 40.1350),
-    ('Kidimu', 'Southern village', 1600, -3.2400, 40.1100),
-    ('Mwembeni', 'Western village', 1900, -3.2150, 40.1050),
-    ('Mnakasa', 'Central village', 2200, -3.2250, 40.1200),
-    ('KPE', 'Coastal area village', 1700, -3.2000, 40.1300),
-    ('Mtopanga', 'Northern coastal village', 1400, -3.2450, 40.1000)
+    ('Ganda', 'Main ward center', 3500, -3.2197, 40.1169),
+    ('Msabaha', 'Northern sub-location', 2800, -3.1950, 40.1050),
+    ('Mere', 'Eastern sub-location', 2200, -3.2350, 40.1350),
+    ('Kijiwetanga', 'Western sub-location', 1900, -3.2100, 40.0950)
   `).run();
 
   // Insert crime types
