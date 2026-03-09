@@ -153,14 +153,14 @@ export default function NewIncidentPage() {
                   </div>
 
                   <div className="col-md-6">
-                    <label className="form-label fw-semibold small">Village <span className="text-danger">*</span></label>
+                    <label className="form-label fw-semibold small">Sub-location <span className="text-danger">*</span></label>
                     <select
                       className="form-select"
                       value={form.village_id}
                       onChange={(e) => handleVillageChange(e.target.value)}
                       required
                     >
-                      <option value="">Select village...</option>
+                      <option value="">Select sub-location...</option>
                       {villages.map((v) => (
                         <option key={v.id} value={v.id}>{v.name}</option>
                       ))}
@@ -310,7 +310,7 @@ export default function NewIncidentPage() {
               </div>
               <div className="card-body">
                 <p className="text-muted small mb-3">
-                  Coordinates are auto-filled from the selected village. You can adjust them for precise location.
+                  Coordinates are auto-filled from the selected sub-location. You can adjust them for precise location.
                 </p>
                 <div className="mb-3">
                   <label className="form-label fw-semibold small">Latitude</label>

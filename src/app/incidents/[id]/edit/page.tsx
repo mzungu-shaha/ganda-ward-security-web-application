@@ -153,10 +153,10 @@ export default function EditIncidentPage() {
                       onChange={(e) => setForm({ ...form, date_time: e.target.value })} required />
                   </div>
                   <div className="col-md-6">
-                    <label className="form-label fw-semibold small">Village</label>
+                    <label className="form-label fw-semibold small">Sub-location</label>
                     <select className="form-select" value={form.village_id}
                       onChange={(e) => setForm({ ...form, village_id: e.target.value })} required>
-                      <option value="">Select village...</option>
+                      <option value="">Select sub-location...</option>
                       {villages.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
                     </select>
                   </div>

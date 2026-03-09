@@ -166,7 +166,7 @@ export default function IncidentDetailPage() {
                   </p>
                 </div>
                 <div className="col-md-6">
-                  <label className="text-muted small fw-semibold">VILLAGE</label>
+                  <label className="text-muted small fw-semibold">SUB-LOCATION</label>
                   <p className="mb-0">{incident.village_name}</p>
                 </div>
                 <div className="col-md-6">

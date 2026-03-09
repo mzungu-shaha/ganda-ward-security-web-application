@@ -94,7 +94,7 @@ export default function MapPage() {
               <strong style="font-size: 0.85rem;">${incident.incident_number}</strong>
             </div>
             <p style="margin: 0 0 4px; font-size: 0.8rem;"><strong>Type:</strong> ${incident.crime_type_name}</p>
-            <p style="margin: 0 0 4px; font-size: 0.8rem;"><strong>Village:</strong> ${incident.village_name}</p>
+            <p style="margin: 0 0 4px; font-size: 0.8rem;"><strong>Sub-location:</strong> ${incident.village_name}</p>
             <p style="margin: 0 0 4px; font-size: 0.8rem;"><strong>Location:</strong> ${incident.location}</p>
             <p style="margin: 0 0 4px; font-size: 0.8rem;"><strong>Date:</strong> ${new Date(incident.date_time).toLocaleDateString("en-KE")}</p>
             <p style="margin: 0; font-size: 0.8rem;"><strong>Suspect:</strong> ${incident.suspect_status.replace("_", " ")}</p>
@@ -281,7 +281,7 @@ export default function MapPage() {
                     className="rounded-circle flex-shrink-0"
                     style={{ width: "20px", height: "20px", backgroundColor: "rgba(231,76,60,0.3)", border: "1px solid rgba(231,76,60,0.5)" }}
                   ></div>
-                  <span className="small">Village Risk Zone</span>
+                  <span className="small">Sub-location Risk Zone</span>
                 </div>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function MapPage() {
           {/* Village Stats */}
           <div className="card border-0 shadow-sm">
             <div className="card-header bg-white border-0">
-              <h6 className="fw-bold mb-0">Village Incident Count</h6>
+              <h6 className="fw-bold mb-0">Sub-location Incident Count</h6>
             </div>
             <div className="card-body p-0">
               <div className="list-group list-group-flush">

@@ -73,7 +73,7 @@ export default function LoginPage() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/villages">
-                  <i className="bi bi-people me-1"></i>Villages
+                  <i className="bi bi-people me-1"></i>Sub-locations
                 </a>
               </li>
             </ul>

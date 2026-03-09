@@ -45,7 +45,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               <li className="nav-item">
                 <Link href="/villages" className={`nav-link ${isActive("/villages")}`}>
                   <i className="bi bi-houses me-1"></i>
-                  Villages
+                  Sub-locations
                 </Link>
               </li>
               <li className="nav-item">

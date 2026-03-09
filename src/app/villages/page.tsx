@@ -4,7 +4,7 @@ import AppLayout from "@/components/AppLayout";
 import PublicLayout from "@/components/PublicLayout";
 import Link from "next/link";
 
-interface Village {
+interface SubLocation {
   id: number;
   name: string;
   description: string;
@@ -15,8 +15,8 @@ interface Village {
   created_at: string;
 }
 
-export default function VillagesPage() {
-  const [villages, setVillages] = useState<Village[]>([]);
+export default function SubLocationsPage() {
+  const [subLocations, setSubLocations] = useState<SubLocation[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated] = useState(() => {
     // Check auth on initial render
@@ -43,17 +43,17 @@ export default function VillagesPage() {
     name: "", description: "", population: "", latitude: "", longitude: "",
   });
 
-  const fetchVillages = async () => {
+  const fetchSubLocations = async () => {
     const res = await fetch("/api/villages");
     const data = await res.json();
-    setVillages(data.villages || []);
+    setSubLocations(data.villages || []);
     setLoading(false);
   };
 
-  // Fetch villages on mount (works without auth now)
+  // Fetch sub-locations on mount (works without auth now)
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchVillages();
+    fetchSubLocations();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -67,13 +67,13 @@ export default function VillagesPage() {
     });
     const data = await res.json();
     if (!res.ok) {
-      setError(data.error || "Failed to add village");
+      setError(data.error || "Failed to add sub-location");
       return;
     }
-    setSuccess("Village added successfully!");
+    setSuccess("Sub-location added successfully!");
     setShowModal(false);
     setForm({ name: "", description: "", population: "", latitude: "", longitude: "" });
-    fetchVillages();
+    fetchSubLocations();
     setTimeout(() => setSuccess(""), 3000);
   };
 
@@ -91,13 +91,13 @@ export default function VillagesPage() {
         <div>
           <h4 className="fw-bold mb-1">
             <i className="bi bi-houses me-2 text-primary"></i>
-            Villages
+            Sub-locations
           </h4>
-          <p className="text-muted small mb-0">{villages.length} villages in Ganda Ward</p>
+          <p className="text-muted small mb-0">{subLocations.length} sub-locations in Ganda Ward</p>
         </div>
         {isAuthenticated && userRole === "admin" && (
           <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
-            <i className="bi bi-plus-circle me-1"></i>Add Village
+            <i className="bi bi-plus-circle me-1"></i>Add Sub-location
           </button>
         )}
         {!isAuthenticated && (
@@ -120,17 +120,17 @@ export default function VillagesPage() {
         </div>
       ) : (
         <div className="row g-3">
-          {villages.map((village) => {
-            const risk = getRiskLevel(village.incident_count);
+          {subLocations.map((subLocation) => {
+            const risk = getRiskLevel(subLocation.incident_count);
             return (
-              <div key={village.id} className="col-md-6 col-lg-4">
+              <div key={subLocation.id} className="col-md-6 col-lg-4">
                 <div className="card border-0 shadow-sm h-100">
                   <div className="card-body">
                     <div className="d-flex align-items-start justify-content-between mb-3">
                       <div>
-                        <h6 className="fw-bold mb-1">{village.name}</h6>
-                        {village.description && (
-                          <p className="text-muted small mb-0">{village.description}</p>
+                        <h6 className="fw-bold mb-1">{subLocation.name}</h6>
+                        {subLocation.description && (
+                          <p className="text-muted small mb-0">{subLocation.description}</p>
                         )}
                       </div>
                       <span className={`badge bg-${risk.color}`}>{risk.label}</span>
@@ -139,22 +139,22 @@ export default function VillagesPage() {
                     <div className="row g-2 mb-3">
                       <div className="col-6">
                         <div className="bg-light rounded p-2 text-center">
-                          <div className="fw-bold text-danger">{village.incident_count}</div>
+                          <div className="fw-bold text-danger">{subLocation.incident_count}</div>
                           <div className="text-muted" style={{ fontSize: "0.7rem" }}>Incidents</div>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="bg-light rounded p-2 text-center">
-                          <div className="fw-bold">{village.population?.toLocaleString() || "N/A"}</div>
+                          <div className="fw-bold">{subLocation.population?.toLocaleString() || "N/A"}</div>
                           <div className="text-muted" style={{ fontSize: "0.7rem" }}>Population</div>
                         </div>
                       </div>
                     </div>
 
-                    {village.latitude && village.longitude && (
+                    {subLocation.latitude && subLocation.longitude && (
                       <div className="d-flex align-items-center text-muted small">
                         <i className="bi bi-geo-alt me-1"></i>
-                        {village.latitude.toFixed(4)}, {village.longitude.toFixed(4)}
+                        {subLocation.latitude.toFixed(4)}, {subLocation.longitude.toFixed(4)}
                       </div>
                     )}
                   </div>
@@ -165,20 +165,20 @@ export default function VillagesPage() {
         </div>
       )}
 
-      {/* Add Village Modal - only show if authenticated */}
+      {/* Add Sub-location Modal - only show if authenticated */}
       {showModal && isAuthenticated && (
         <div className="modal show d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title fw-bold">Add New Village</h5>
+                <h5 className="modal-title fw-bold">Add New Sub-location</h5>
                 <button className="btn-close" onClick={() => setShowModal(false)}></button>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="modal-body">
                   {error && <div className="alert alert-danger small">{error}</div>}
                   <div className="mb-3">
-                    <label className="form-label fw-semibold small">Village Name <span className="text-danger">*</span></label>
+                    <label className="form-label fw-semibold small">Sub-location Name <span className="text-danger">*</span></label>
                     <input type="text" className="form-control" value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })} required maxLength={100} />
                   </div>
@@ -207,7 +207,7 @@ export default function VillagesPage() {
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-outline-secondary" onClick={() => setShowModal(false)}>Cancel</button>
-                  <button type="submit" className="btn btn-primary">Add Village</button>
+                  <button type="submit" className="btn btn-primary">Add Sub-location</button>
                 </div>
               </form>
             </div>

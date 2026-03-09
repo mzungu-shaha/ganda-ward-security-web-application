@@ -64,7 +64,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     { href: "/incidents/new", icon: "bi-plus-circle", label: "Report Incident", roles: ["admin", "police_officer"] },
     { href: "/map", icon: "bi-map", label: "Crime Map", roles: ["admin", "police_officer", "village_elder"] },
     { href: "/reports", icon: "bi-file-earmark-bar-graph", label: "Reports", roles: ["admin", "police_officer", "village_elder"] },
-    { href: "/villages", icon: "bi-houses", label: "Villages", roles: ["admin", "police_officer", "village_elder"] },
+    { href: "/villages", icon: "bi-houses", label: "Sub-locations", roles: ["admin", "police_officer", "village_elder"] },
     { href: "/users", icon: "bi-people", label: "Users", roles: ["admin"] },
   ];
 
@@ -81,7 +81,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     const labels: Record<string, string> = {
       admin: "Administrator",
       police_officer: "Police Officer",
-      village_elder: "Village Elder",
+      village_elder: "Sub-location Elder",
     };
     return labels[role] || role;
   };

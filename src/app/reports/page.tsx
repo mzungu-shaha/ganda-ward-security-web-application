@@ -67,7 +67,7 @@ export default function ReportsPage() {
 
   const exportCSV = (data: Incident[], filename: string) => {
     const headers = [
-      "Incident #", "Date/Time", "Village", "Crime Type", "Severity",
+      "Incident #", "Date/Time", "Sub-location", "Crime Type", "Severity",
       "Location", "Description", "Suspect Status", "Officer", "Case Status", "Victims"
     ];
     const rows = data.map((i) => [
@@ -155,7 +155,7 @@ export default function ReportsPage() {
 
       autoTable(doc, {
         startY: 44,
-        head: [["Village", "Incidents"]],
+        head: [["Sub-location", "Incidents"]],
         body: villageData,
         theme: "grid",
         headStyles: { fillColor: [26, 58, 92], textColor: 255, fontSize: 8 },
@@ -192,7 +192,7 @@ export default function ReportsPage() {
 
       autoTable(doc, {
         startY: lastY + 14,
-        head: [["Incident #", "Date", "Village", "Crime Type", "Location", "Suspect Status", "Officer", "Status"]],
+        head: [["Incident #", "Date", "Sub-location", "Crime Type", "Location", "Suspect Status", "Officer", "Status"]],
         body: filteredData.map((i) => [
           i.incident_number,
           new Date(i.date_time).toLocaleDateString("en-KE"),
@@ -425,13 +425,13 @@ export default function ReportsPage() {
             <div className="col-md-6">
               <div className="card border-0 shadow-sm">
                 <div className="card-header bg-white border-0">
-                  <h6 className="fw-bold mb-0">Incidents by Village</h6>
+                  <h6 className="fw-bold mb-0">Incidents by Sub-location</h6>
                 </div>
                 <div className="card-body p-0">
                   <table className="table table-sm mb-0">
                     <thead className="table-light">
                       <tr>
-                        <th className="small">Village</th>
+                        <th className="small">Sub-location</th>
                         <th className="small text-end">Count</th>
                         <th className="small text-end">%</th>
                       </tr>
@@ -475,7 +475,7 @@ export default function ReportsPage() {
                       <tr>
                         <th className="small fw-semibold">Incident #</th>
                         <th className="small fw-semibold">Date</th>
-                        <th className="small fw-semibold">Village</th>
+                        <th className="small fw-semibold">Sub-location</th>
                         <th className="small fw-semibold">Crime Type</th>
                         <th className="small fw-semibold">Location</th>
                         <th className="small fw-semibold">Suspect</th>

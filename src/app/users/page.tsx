@@ -83,7 +83,7 @@ export default function UsersPage() {
   const getRoleLabel = (role: string) => {
     const labels: Record<string, string> = {
       admin: "Administrator", police_officer: "Police Officer",
-      village_elder: "Village Elder", viewer: "Viewer",
+      village_elder: "Sub-location Elder", viewer: "Viewer",
     };
     return labels[role] || role;
   };
@@ -221,7 +221,7 @@ export default function UsersPage() {
                         onChange={(e) => setForm({ ...form, role: e.target.value })}>
                         <option value="admin">Administrator</option>
                         <option value="police_officer">Police Officer</option>
-                        <option value="village_elder">Village Elder</option>
+                        <option value="village_elder">Sub-location Elder</option>
                         <option value="viewer">Viewer</option>
                       </select>
                     </div>

@@ -344,7 +344,7 @@ export default function DashboardPage() {
             <div className="card-header bg-white border-0 pb-0">
               <h6 className="fw-bold mb-0">
                 <i className="bi bi-bar-chart me-2 text-primary"></i>
-                Incidents by Village
+                Incidents by Sub-location
               </h6>
             </div>
             <div className="card-body">
@@ -426,7 +426,7 @@ export default function DashboardPage() {
                     <tr>
                       <th className="small fw-semibold">Incident #</th>
                       <th className="small fw-semibold">Date</th>
-                      <th className="small fw-semibold">Village</th>
+                      <th className="small fw-semibold">Sub-location</th>
                       <th className="small fw-semibold">Type</th>
                       <th className="small fw-semibold">Status</th>
                     </tr>
@@ -468,13 +468,13 @@ export default function DashboardPage() {
             <div className="card-header bg-white border-0">
               <h6 className="fw-bold mb-0">
                 <i className="bi bi-geo-alt-fill me-2 text-danger"></i>
-                High-Risk Villages
+                High-Risk Sub-locations
                 <span className="badge bg-danger ms-2 small">Last 30 Days</span>
               </h6>
             </div>
             <div className="card-body">
               {data?.highRiskVillages?.length === 0 ? (
-                <p className="text-muted small text-center py-3">No high-risk villages in the last 30 days</p>
+                <p className="text-muted small text-center py-3">No high-risk sub-locations in the last 30 days</p>
               ) : (
                 data?.highRiskVillages?.map((village, idx) => (
                   <div key={village.name} className="d-flex align-items-center mb-3">

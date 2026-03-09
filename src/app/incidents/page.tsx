@@ -107,7 +107,7 @@ export default function IncidentsPage() {
   };
 
   const exportCSV = () => {
-    const headers = ["Incident #", "Date/Time", "Village", "Crime Type", "Location", "Suspect Status", "Officer", "Status"];
+    const headers = ["Incident #", "Date/Time", "Sub-location", "Crime Type", "Location", "Suspect Status", "Officer", "Status"];
     const rows = incidents.map((i) => [
       i.incident_number,
       new Date(i.date_time).toLocaleString("en-KE"),
@@ -173,7 +173,7 @@ export default function IncidentsPage() {
                 value={filters.village}
                 onChange={(e) => setFilters({ ...filters, village: e.target.value })}
               >
-                <option value="">All Villages</option>
+                <option value="">All Sub-locations</option>
                 {villages.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
               </select>
             </div>
@@ -274,7 +274,7 @@ export default function IncidentsPage() {
                   <tr>
                     <th className="small fw-semibold">Incident #</th>
                     <th className="small fw-semibold">Date & Time</th>
-                    <th className="small fw-semibold">Village</th>
+                    <th className="small fw-semibold">Sub-location</th>
                     <th className="small fw-semibold">Crime Type</th>
                     <th className="small fw-semibold">Location</th>
                     <th className="small fw-semibold">Suspect</th>
